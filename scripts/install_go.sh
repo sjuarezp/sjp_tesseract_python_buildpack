@@ -18,7 +18,7 @@ function main() {
 
 
 	# Install Leptonica from Source
-	wget --no-cookies --no-check-certificate  http://www.leptonica.com/source/leptonica-1.78.0.tar.gz
+	wget --no-cookies --no-check-certificate  http://www.leptonica.org/source/leptonica-1.78.0.tar.gz
 	
 	tar -zxvf leptonica-1.78.0.tar.gz
 	cd leptonica-1.78.0
