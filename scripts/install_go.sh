@@ -10,7 +10,7 @@ function main() {
 	#apt-get install -y yum
 	# (Estimated Time of Completion: 45 minutes)
 	# Instructions taken (and slightly modified) from https://github.com/EisenVault/install-tesseract-redhat-centos/blob/master/install-tesseract.sh
-	cd /opt
+	#cd /opt
 	# The following line will take 30 minutes to install.
 	#yum -y update
 	#yum -y install libstdc++ autoconf automake libtool autoconf-archive pkg-config gcc gcc-c++ make libjpeg-devel libpng-devel libtiff-devel zlib-devel
