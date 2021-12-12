@@ -23,7 +23,7 @@ function main() {
 	tar -zxvf leptonica-1.78.0.tar.gz
 	cd leptonica-1.78.0
 	#./autobuild
-	./autogens
+	./autogen
 	./configure
 	make -j
 	make install
