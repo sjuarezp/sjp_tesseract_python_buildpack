@@ -16,10 +16,12 @@ function main() {
 	#yum -y install libstdc++ autoconf automake libtool autoconf-archive pkg-config gcc gcc-c++ make libjpeg-devel libpng-devel libtiff-devel zlib-devel
 	#yum group install -y "Development Tools"
 
-
+  mkdir sjp_install
+	chmod 777 sjp_install
+	cd sjp_install
 	# Install Leptonica from Source
 	wget http://www.leptonica.com/source/leptonica-1.78.0.tar.gz
-	chmod 777 leptonica-1.78.0.tar.gz
+	
 	tar -zxvf leptonica-1.78.0.tar.gz
 	cd leptonica-1.78.0
 	./autobuild
