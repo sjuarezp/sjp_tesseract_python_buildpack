@@ -7,10 +7,57 @@ set -o pipefail
 function main() {
 	echo "-----> Installing Tesseract - SJP:i"
 	
+	# (Estimated Time of Completion: 45 minutes)
+	# Instructions taken (and slightly modified) from https://github.com/EisenVault/install-tesseract-redhat-centos/blob/master/install-tesseract.sh
+	cd /opt
+	# The following line will take 30 minutes to install.
+	yum -y update
+	yum -y install libstdc++ autoconf automake libtool autoconf-archive pkg-config gcc gcc-c++ make libjpeg-devel libpng-devel libtiff-devel zlib-devel
+	yum group install -y "Development Tools"
+
+
+	# Install Leptonica from Source
+	wget http://www.leptonica.com/source/leptonica-1.75.3.tar.gz
+	tar -zxvf leptonica-1.75.3.tar.gz
+	cd leptonica-1.75.3
+	./autobuild
+	./configure
+	make -j
+	make install
+	cd ..
+	# Delete tar.gz file if you like
+
+
+	# Sanity checks
+	# check if libpng is installed: type "whereis libpng" and expect to see a directory; a blank line is not good
+	# check if leptonica is installed: type "ls /usr/local/include" and expect to see "leptonica"
+
+
+	# Install Tesseract from Source
+	wget https://github.com/tesseract-ocr/tesseract/archive/4.0.0-beta.1.tar.gz
+	tar -zxvf 4.0.0-beta.1.tar.gz
+	cd tesseract-4.0.0-beta.1/
+	./autogen.sh
+	PKG_CONFIG_PATH=/usr/local/lib/pkgconfig LIBLEPT_HEADERSDIR=/usr/local/include ./configure --with-extra-includes=/usr/local/include --with-extra-libraries=/usr/local/lib
+	LDFLAGS="-L/usr/local/lib" CFLAGS="-I/usr/local/include" make -j
+	make install
+	ldconfig
+	cd ..
+	# Delete tar.gz file if you like
+
+
+	# Download and install tesseract language files (Tesseract 4 traineddata files)
+	wget https://github.com/tesseract-ocr/tessdata/raw/master/osd.traineddata
+	wget https://github.com/tesseract-ocr/tessdata/raw/master/equ.traineddata
+	wget https://github.com/tesseract-ocr/tessdata/raw/master/eng.traineddata
+	wget https://github.com/tesseract-ocr/tessdata/raw/master/chi_sim.traineddata
+	# download another other languages you like
+	mv *.traineddata /usr/local/share/tessdata
+
 	
-	apt-get update 
-	apt-get install tesseract-ocr -y
-		echo "-----> Installing Tesseract - SJP:f"
+	
+	
+  echo "-----> Installing Tesseract - SJP:f"
 	
 	
   if [[ "${CF_STACK:-}" != "cflinuxfs3" ]]; then
