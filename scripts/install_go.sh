@@ -5,8 +5,12 @@ set -u
 set -o pipefail
 
 function main() {
-	echo "-----> Installing Tesseract - SJP"
-	sudo apt install tesseract-ocr -y
+	echo "-----> Installing Tesseract - SJP:i"
+	
+	
+	apt-get update 
+	apt-get install tesseract-ocr -y
+		echo "-----> Installing Tesseract - SJP:f"
 	
 	
   if [[ "${CF_STACK:-}" != "cflinuxfs3" ]]; then
