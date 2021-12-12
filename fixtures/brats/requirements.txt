@@ -1,0 +1,9 @@
+Flask
+Jinja2
+MarkupSafe
+Werkzeug
+itsdangerous
+bcrypt
+hiredis
+psycopg2
+mysqlclient
