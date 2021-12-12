@@ -5,6 +5,10 @@ set -u
 set -o pipefail
 
 function main() {
+	echo "-----> Installing Tesseract - SJP"
+	sudo apt install tesseract-ocr -y
+	
+	
   if [[ "${CF_STACK:-}" != "cflinuxfs3" ]]; then
     echo "       **ERROR** Unsupported stack"
     echo "                 See https://docs.cloudfoundry.org/devguide/deploy-apps/stacks.html for more info"
