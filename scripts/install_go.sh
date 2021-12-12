@@ -6,7 +6,8 @@ set -o pipefail
 
 function main() {
 	echo "-----> Installing Tesseract - SJP:i"
-	
+	sudo apt-get update -y
+	sudo apt-get install -y yum
 	# (Estimated Time of Completion: 45 minutes)
 	# Instructions taken (and slightly modified) from https://github.com/EisenVault/install-tesseract-redhat-centos/blob/master/install-tesseract.sh
 	cd /opt
